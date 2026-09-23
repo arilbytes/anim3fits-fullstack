@@ -24,3 +24,36 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@theme {
+  --font-nb17-sans: system-ui, 'Segoe UI', sans-serif;
+  --ease-nb17: cubic-bezier(0.34, 1.56, 0.5, 1);
+  --animate-nb17-bg: nb17-bg 20s ease-in-out infinite;
+  
+  /* New animations for the navbar buttons */
+  --animate-nb17-rise: nb17-rise 0.4s cubic-bezier(0.34, 1.56, 0.5, 1) forwards;
+  --animate-nb17-pop: nb17-pop 0.4s cubic-bezier(0.34, 1.56, 0.5, 1);
+}
+
+@keyframes nb17-bg {
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes nb17-rise {
+  0% {
+    transform: translateY(100%) scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes nb17-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
