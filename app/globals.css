@@ -29,10 +29,13 @@ body {
   --font-nb17-sans: system-ui, 'Segoe UI', sans-serif;
   --ease-nb17: cubic-bezier(0.34, 1.56, 0.5, 1);
   --animate-nb17-bg: nb17-bg 20s ease-in-out infinite;
-  
+
   /* New animations for the navbar buttons */
   --animate-nb17-rise: nb17-rise 0.4s cubic-bezier(0.34, 1.56, 0.5, 1) forwards;
   --animate-nb17-pop: nb17-pop 0.4s cubic-bezier(0.34, 1.56, 0.5, 1);
+
+  /* "As Seen On" marquee — seamless loop via -50% translate on a duplicated track */
+  --animate-nb17-marquee: nb17-marquee 32s linear infinite;
 }
 
 @keyframes nb17-bg {
@@ -56,4 +59,13 @@ body {
   0% { transform: scale(1); }
   50% { transform: scale(1.15); }
   100% { transform: scale(1); }
+}
+
+@keyframes nb17-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
