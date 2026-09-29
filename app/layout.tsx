@@ -32,7 +32,13 @@ export default function RootLayout({
   );
 }
 
-<body
+{/* <body
   className={`${inter.className} bg-[conic-gradient(from_200deg_at_50%_50%,#00c2ff,#8e2de2,#ff...)]`}
   suppressHydrationWarning
+></body> */}
+
+// app/layout.tsx
+<body
+  suppressHydrationWarning
+  className={`${inter.className} bg-[conic-gradient(from_200deg_at_50%_50%,#00c2ff,#8e2de2,#ff6a88,#00c2ff)] bg-[length:200%_200%] animate-nb17-bg motion-reduce:animate-none min-h-svh`}
 ></body>
