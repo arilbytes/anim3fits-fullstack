@@ -31,3 +31,8 @@ export default function RootLayout({
     </html>
   );
 }
+
+<body
+  className={`${inter.className} bg-[conic-gradient(from_200deg_at_50%_50%,#00c2ff,#8e2de2,#ff...)]`}
+  suppressHydrationWarning
+></body>
