@@ -1,10 +1,9 @@
-
 "use client";
 
 import React from "react";
 import { useRouter } from "next/navigation";
 
-// ─── Icons (Inline SVGs) ─────────────────────────────────────
+// ─── Icons ────────────────────────────────────────────────────
 
 const MenuIcon = () => (
   <svg
@@ -80,12 +79,12 @@ const LiquidButton = ({ icon, ariaLabel, onClick }) => {
       type="button"
       aria-label={ariaLabel}
       onClick={onClick}
-      className="group relative flex h-11 w-11 items-center justify-center rounded-full overflow-hidden transition-transform active:scale-95"
+      className="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full transition-transform active:scale-95"
     >
       {/* Rising liquid bubble */}
-      <span className="absolute inset-0 rounded-full bg-gradient-to-t from-white/60 to-white/10 translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.5,1)] group-hover:translate-y-0 group-active:animate-nb17-pop" />
+      <span className="absolute inset-0 translate-y-full rounded-full bg-gradient-to-t from-white/60 to-white/10 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.5,1)] group-hover:translate-y-0 group-active:animate-nb17-pop" />
 
-      {/* Icon sits above the bubble */}
+      {/* Icon */}
       <span className="relative z-10 text-gray-800 transition-transform duration-300 group-hover:-translate-y-0.5">
         {icon}
       </span>
@@ -93,7 +92,7 @@ const LiquidButton = ({ icon, ariaLabel, onClick }) => {
   );
 };
 
-// ─── Main Navbar Component ───────────────────────────────────
+// ─── Main Navbar ──────────────────────────────────────────────
 
 export default function Navbar() {
   const router = useRouter();
@@ -102,12 +101,16 @@ export default function Navbar() {
     router.push("/login");
   };
 
+  const handleCart = () => {
+    router.push("/cart");
+  };
+
   return (
-    <nav className="fixed top-0 inset-x-0 z-50 p-4 font-nb17-sans">
+    <nav className="fixed inset-x-0 top-0 z-50 p-4 font-nb17-sans">
       <div className="mx-auto flex max-w-7xl items-center justify-between rounded-[2.5rem] border border-white/40 bg-[color-mix(in_oklab,white_14%,transparent)] px-6 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_20px_44px_-24px_rgba(0,0,0,0.55)] backdrop-blur-[22px] backdrop-saturate-[1.8]">
 
-        {/* Left: Hamburger Menu */}
-        <div className="flex-1 flex justify-start">
+        {/* Left: Hamburger */}
+        <div className="flex flex-1 justify-start">
           <LiquidButton
             ariaLabel="Open menu"
             icon={<MenuIcon />}
@@ -115,7 +118,7 @@ export default function Navbar() {
         </div>
 
         {/* Center: Logo */}
-        <div className="flex-shrink-0 flex items-center justify-center gap-2">
+        <div className="flex shrink-0 items-center justify-center gap-2">
           <div className="flex items-center gap-2 text-white">
             <img
               src="/logo.png"
@@ -125,8 +128,8 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Right: Action Icons */}
-        <div className="flex-1 flex justify-end items-center gap-1">
+        {/* Right: Actions */}
+        <div className="flex flex-1 items-center justify-end gap-1">
 
           {/* Search */}
           <LiquidButton
@@ -134,7 +137,7 @@ export default function Navbar() {
             icon={<SearchIcon />}
           />
 
-          {/* Account: Redirects to Login */}
+          {/* Account */}
           <LiquidButton
             ariaLabel="Login"
             icon={<UserIcon />}
@@ -145,6 +148,7 @@ export default function Navbar() {
           <LiquidButton
             ariaLabel="Cart"
             icon={<BagIcon />}
+            onClick={handleCart}
           />
 
         </div>
@@ -152,3 +156,4 @@ export default function Navbar() {
     </nav>
   );
 }
+
