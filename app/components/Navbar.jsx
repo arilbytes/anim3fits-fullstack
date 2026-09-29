@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import Link from 'next/link';
 
 // ─── Icons ────────────────────────────────────────────────────
 
@@ -101,6 +102,10 @@ export default function Navbar() {
     router.push("/login");
   };
 
+  const handleSearch = () => {
+  router.push("/search");
+  };
+
   const handleCart = () => {
     router.push("/cart");
   };
@@ -119,14 +124,18 @@ export default function Navbar() {
 
         {/* Center: Logo */}
         <div className="flex shrink-0 items-center justify-center gap-2">
-          <div className="flex items-center gap-2 text-white">
-            <img
-              src="/logo.png"
-              alt="Animefits Logo"
-              className="h-10 w-auto drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]"
-            />
-          </div>
-        </div>
+        <Link
+         href="/"
+         aria-label="Animefits — Home"
+        className="flex items-center gap-2 text-white transition-opacity hover:opacity-90"
+         >
+        <img
+        src="/logo.png"
+        alt="Animefits Logo"
+        className="h-10 w-auto drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]"
+        />
+       </Link>
+</div>
 
         {/* Right: Actions */}
         <div className="flex flex-1 items-center justify-end gap-1">
@@ -135,6 +144,7 @@ export default function Navbar() {
           <LiquidButton
             ariaLabel="Search"
             icon={<SearchIcon />}
+            onClick={handleSearch}
           />
 
           {/* Account */}
