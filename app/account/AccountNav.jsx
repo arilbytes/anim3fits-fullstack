@@ -1,18 +1,26 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { GLASS } from '@/app/lib/glass';
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { GLASS } from "@/app/lib/glass";
+import { useAuth } from "@/app/context/AuthContext";
 
 const LINKS = [
-  { href: "/account", label: "Overview" },
-  { href: "/account/orders", label: "Orders" },
-  { href: "/account/wishlist", label: "Wishlist" },
+  { href: "/account",           label: "Overview" },
+  { href: "/account/orders",    label: "Orders" },
+  { href: "/account/wishlist",  label: "Wishlist" },
   { href: "/account/addresses", label: "Addresses" },
 ];
 
 export default function AccountNav() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
 
   return (
     <nav className={`h-fit rounded-[1.75rem] p-3 font-nb17-sans ${GLASS}`}>
@@ -32,6 +40,16 @@ export default function AccountNav() {
             </li>
           );
         })}
+
+        <li className="mt-2 border-t border-white/10 pt-2">
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="block w-full rounded-2xl px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            Log Out
+          </button>
+        </li>
       </ul>
     </nav>
   );

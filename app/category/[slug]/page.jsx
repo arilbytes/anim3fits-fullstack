@@ -1,15 +1,17 @@
 'use client';
 
+import { use } from 'react';
 import { notFound } from 'next/navigation';
 import AnimeBackground from '@/app/components/anime';
 import ProductCard from '@/app/components/ProductCard';
 import { getCategoryBySlug, getProductsByCategory } from '@/app/data/products';
 
 export default function CategoryPage({ params }) {
-  const category = getCategoryBySlug(params.slug);
+  const { slug } = use(params);         
+  const category = getCategoryBySlug(slug);
   if (!category) return notFound();
 
-  const products = getProductsByCategory(params.slug);
+  const products = getProductsByCategory(slug);
 
   return (
     <main>

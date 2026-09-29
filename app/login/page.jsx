@@ -1,3 +1,15 @@
+// import { useAuth } from "@/app/context/AuthContext";
+
+// // ...inside component:
+// const { login } = useAuth();
+
+// const onSubmit = (e) => {
+//   e.preventDefault();
+//   // Frontend-only stub — swap for real auth later (NextAuth, your API, etc.)
+//   login({ email: form.email, name: form.email.split("@")[0] });
+//   router.push("/account");
+// };
+
 'use client';
 
 import { useState } from 'react';
@@ -5,16 +17,19 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import AnimeBackground from '@/app/components/anime';
 import { GLASS_STRONG, GLASS_INPUT } from '@/app/lib/glass';
+import { useAuth } from '@/app/context/AuthContext';
 
 export default function LoginPage() {
   const router = useRouter();
-  const [form, setForm] = useState({ email: "", password: "" });
+  const { login } = useAuth();
+  const [form, setForm] = useState({ email: '', password: '' });
 
   const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // Frontend-only stub — wire this up to real auth (NextAuth, your API, etc.)
+    // Frontend-only stub — swap for real auth later (NextAuth, your API, etc.)
+    login({ email: form.email, name: form.email.split('@')[0] });
     router.push('/account');
   };
 
@@ -28,21 +43,44 @@ export default function LoginPage() {
           <p className="mt-2 text-sm text-white/60">Log in to track orders and manage your account.</p>
 
           <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-4">
-            <input className={GLASS_INPUT} type="email" name="email" placeholder="Email" required value={form.email} onChange={onChange} />
-            <input className={GLASS_INPUT} type="password" name="password" placeholder="Password" required value={form.password} onChange={onChange} />
+            <input
+              className={GLASS_INPUT}
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              value={form.email}
+              onChange={onChange}
+            />
+            <input
+              className={GLASS_INPUT}
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+              value={form.password}
+              onChange={onChange}
+            />
 
             <div className="flex justify-end">
-              <Link href="/forgot-password" className="text-xs text-white/50 hover:text-white">Forgot password?</Link>
+              <Link href="/forgot-password" className="text-xs text-white/50 hover:text-white">
+                Forgot password?
+              </Link>
             </div>
 
-            <button type="submit" className="mt-2 rounded-full bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-black transition-transform hover:scale-[1.02] active:scale-95">
+            <button
+              type="submit"
+              className="mt-2 rounded-full bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-black transition-transform hover:scale-[1.02] active:scale-95"
+            >
               Log In
             </button>
           </form>
 
           <p className="mt-6 text-center text-xs text-white/60">
-            New here?{" "}
-            <Link href="/signup" className="font-semibold text-white hover:underline">Create an account</Link>
+            New here?{' '}
+            <Link href="/signup" className="font-semibold text-white hover:underline">
+              Create an account
+            </Link>
           </p>
         </div>
       </section>
