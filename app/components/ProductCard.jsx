@@ -136,6 +136,7 @@ const GLASS_CHIP =
 
 /**
  * @param {object} props
+ * @param {string} [props.id]       Stable product id (used by consumers; optional for cards without one)
  * @param {string} [props.slug]     Product slug — powers /product/[slug]
  * @param {string} [props.image]
  * @param {string} [props.title]
@@ -145,6 +146,7 @@ const GLASS_CHIP =
  * @param {() => void} [props.onOpen] // optional override (router.push, modal, etc.)
  */
 export default function ProductCard({
+  id,
   slug,
   image,
   title,
